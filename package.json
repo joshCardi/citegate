@@ -1,0 +1,25 @@
+{
+  "name": "citegate",
+  "version": "0.1.0",
+  "description": "Mechanical evidence gates for any MCP client.",
+  "type": "module",
+  "bin": {
+    "citegate": "src/server.js"
+  },
+  "exports": {
+    ".": "./src/gates/index.js",
+    "./grounded-rewrite": "./src/tools/grounded_rewrite.js"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "demo": "node demo/run.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4"
+  }
+}
