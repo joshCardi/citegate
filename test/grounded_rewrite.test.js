@@ -39,3 +39,21 @@ test("grounded_rewrite requires the model tool call shape", async () => {
   assert.equal(result.status, "BLOCKED");
   assert.match(result.reason, /did not call/);
 });
+
+test("grounded_rewrite parses a Responses API envelope with top-level text config", async () => {
+  const text = "The court dismissed the petition. See 410 U.S. 113 (1973).";
+  const result = await groundedRewrite({
+    rejectedClaim: "Rejected.",
+    evidence: { opinion: source },
+    modelCall: async () => ({
+      text: { format: { type: "text" } },
+      output: [{
+        type: "function_call",
+        name: "submit_grounded_rewrite",
+        arguments: JSON.stringify({ text, sourceId: "opinion", start: 0, end: text.length }),
+      }],
+    }),
+  });
+  assert.equal(result.status, "APPROVED");
+  assert.equal(result.text, text);
+});

@@ -57,7 +57,11 @@ async function callResponsesApi({ rejectedClaim, evidence, apiKey, fetchImpl, mo
 }
 
 function parseProposal(modelResponse) {
-  if (modelResponse && typeof modelResponse === "object" && "text" in modelResponse) return modelResponse;
+  if (modelResponse && typeof modelResponse === "object" &&
+      typeof modelResponse.text === "string" && typeof modelResponse.sourceId === "string" &&
+      Number.isInteger(modelResponse.start) && Number.isInteger(modelResponse.end)) {
+    return modelResponse;
+  }
   const call = modelResponse?.output?.find(
     (item) => item.type === "function_call" && item.name === "submit_grounded_rewrite",
   );
