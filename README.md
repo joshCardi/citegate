@@ -2,6 +2,8 @@
 
 > Prompts beg. Gates block.
 
+**Demo video:** <https://youtu.be/7yWovPTXhNU> · **Devpost:** OpenAI Build Week 2026, Developer Tools
+
 CiteGate is installable evidence-gating infrastructure for drafting agents. It is a thin stdio [Model Context Protocol](https://learn.chatgpt.com/docs/extend/mcp) server that any compatible agent can plug into—not another citation-checking pipeline, hosted workflow, or end-user app.
 
 Four zero-dependency mechanical gates bind claims to exact evidence spans, reject citations outside an approved source set, check citation existence, and detect drift in dates, numbers, and named entities. One model-powered tool, `grounded_rewrite`, lets GPT-5.6 propose a repair from registered evidence; the proposal is released only after all four gates pass again.
